@@ -56,13 +56,13 @@ int main( int argc, char* args[] )
 	sqlite3 *db;
 	char *zErrMsg = 0;
 
-	if(sqlite3_open("master.db", &db)){
-		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
-		exit(0);
-	}else{
-		fprintf(stderr, "Opened database successfully\n");
-	}
-	sqlite3_close(db);
+	
+	DBMemOpen(&db);
+	DBClose(db);
+	DBOpen(&db,"master.db");
+	DBClose(db);
+
+	/**/
 	SDL_Delay(5000);
 
 	return 0;

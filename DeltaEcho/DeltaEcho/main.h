@@ -1,6 +1,7 @@
 #ifndef MAIN_H
 #define MAIN_H
 #include "GraphicsWrappers.h"
+#include "DatabaseWrappers.h"
 #include <SDL.h>
 #include <SDL_image.h>
 #include <SDL_opengl.h>

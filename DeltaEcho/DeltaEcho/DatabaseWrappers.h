@@ -3,14 +3,14 @@
 #include <stdio.h>
 #include <sqlite3.h>
 
-void	DBMemOpen(sqlite3*);			//Creates a new database in RAM
-int		DBSMemOpen(sqlite3*);			//Does that, but also reports status
+void	DBMemOpen(sqlite3**);			//Creates a new database in RAM
+int		DBSMemOpen(sqlite3**);			//Does that, but also reports status
 
-void	DBOpen(sqlite3*,char*);			//Open, or create, a database on disk
-int		DBSOpen(sqlite3*,char*);		//
+void	DBOpen(sqlite3**,char*);			//Open, or create, a database on disk
+int		DBSOpen(sqlite3**,char*);		//
 
 void	DBClose(sqlite3*);				//Close a database, whether in ram or on disk
-int		DBsClose(sqlite3*);				//
+int		DBSClose(sqlite3*);				//
 
 void	DBCreateTable(sqlite3*,char*);	//Creates a table in said database
 int		DBSCreateTable(sqlite3*,char*);	//

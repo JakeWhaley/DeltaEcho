@@ -78,8 +78,64 @@ int		DBSSelect(sqlite3*,char**, unsigned long,char**);		//DB, table name, count,
 void	DBInsert(sqlite3*,char**, unsigned long,char**);		//Inserts records into a table, assuming every column is there
 int		DBSInsert(sqlite3*,char**, unsigned long, char**);		//DB, table name,count, records
 
-void	DBInsertS(sqlite3*,char*, unsigned long,unsigned long, char**, char**);	//INSERT records into a table with specifics
-int		DBSInsertS(sqlite3*,char*, unsigned long,unsigned long, char**, char**);//DB,Table,Count Columns, count records, columns, data
+void	DBInsertS(sqlite3* db,char* table, unsigned long columncount,unsigned long recordcount, char** columns, char** data)	//INSERT records into a table with specifics
+{
+	int returnVal = DBSInsertS(db,table, columncount, recordcount, columns, data);
+	switch (returnVal)
+	{
+	case 0:
+		break;
+	case 1:
+		break;
+	case 2:
+		break;
+	};
+};
+int		DBSInsertS(sqlite3* db,char* table, unsigned long columncount,unsigned long recordcount, char** columns, char** data)//DB,Table,Count Columns, count records, columns, data
+{
+	char* err;
+	char* msg;
+	
+	setEqual(&msg,"INSERT INTO ");
+	conc(&msg, table);
+	conc(&msg, " (");
+	
+	for(int i = 0; i < columncount;i++)
+	{
+		conc(&msg, columns[i]);
+		if(i < (columncount-1))
+			conc(&msg, ',');
+	}
+
+	conc(&msg, ") VALUES (");
+
+	for(int i = 0; i < (recordcount); i++)
+	{
+
+		for(int ii = 0; ii < columncount; ii++)
+		{
+			conc(&msg,data[((i*columncount)+(ii))]);
+			if(ii<(columncount-1))
+				conc(&msg,',');
+		}
+		
+		if(i<(recordcount-1))
+			conc(&msg,"),(");
+		else conc(&msg,");");
+	}
+
+	int execsuccess = sqlite3_exec(db,msg,NULL,NULL,&err);
+	switch(execsuccess)
+	{
+	case 0:		//No Error
+		return 0;
+	default:	//We got an error
+		sqlite3_free(err);
+		return execsuccess;	
+	}
+
+};
+
 
 void	DBDeleteW(sqlite3* db,char* table, unsigned long columncount, char** columns, char** wheredata, int* filtertype)	//DELETE records from a table WHERE
 {

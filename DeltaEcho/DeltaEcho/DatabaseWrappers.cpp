@@ -84,9 +84,95 @@ int		DBSInsertS(sqlite3*,char*, unsigned long,unsigned long, char**, char**);//D
 void	DBDeleteW(sqlite3*,char*, unsigned long, char**, char**, int);	//DELETE records from a table WHERE
 int		DBSDeleteW(sqlite3*,char*, unsigned long, char**, char**, int);	//DB,Table,Count Columns, Columns, Where filter, filter type
 
-void	DBUpdateW(sqlite3*,char*, unsigned long, char**, char**,char**,int);	//UPDATE records in a table WHERE
-int		DBSUpdateW(sqlite3*,char*, unsigned long, char**, char**,char**,int);	//DB,Table,Count Columns, Columns, Column Data, Where filter, filter type
-									
+void	DBUpdateW(sqlite3* db,char* table, unsigned long columncount, char** columns, char** updatedata,char** wheredata,int* filtertype )	//UPDATE records in a table WHERE
+{
+	int returnVal = DBSUpdateW(db,table,columncount,columns,updatedata,wheredata,filtertype);
+	switch (returnVal)
+	{
+	case 0:
+		break;
+	case 1:
+		break;
+	case 2:
+		break;
+	};
+};
+int		DBSUpdateW(sqlite3* db,char* table, unsigned long columncount, char** columns, char** updatedata,char** wheredata,int* filtertype )	//DB,Table,Count Columns, Columns, Column Data, Where filter, filter type
+{
+	char* err;
+	char* msg;
+	
+	setEqual(&msg,"UPDATE ");
+	conc(&msg, table);
+	conc(&msg, " SET ");
+	for (int i = 0; i < columncount; i++)
+	{
+		conc(&msg,columns[i]);
+		conc(&msg,'=');
+		conc(&msg,updatedata[i]);
+		if(i!=(columncount-1))
+			conc(&msg,',');
+	}
+	conc(&msg, " WHERE ");
+
+	bool startAnd = false;
+	for(int i = 0; i < columncount; i++)
+	{
+		switch (filtertype[i])
+		{
+			case 0:		//No Filtering
+				break;
+			case 1:		//Exact Filtering
+				if(startAnd)
+					conc(&msg, " AND ");
+				conc(&msg, columns[i]);
+				conc(&msg, " = ");
+				conc(&msg, wheredata[i]);
+				startAnd = true;
+				break;
+			case 2:		//Minimum Filtering
+				if(startAnd)
+					conc(&msg, " AND ");
+				conc(&msg, columns[i]);
+				conc(&msg, " < ");
+				conc(&msg, wheredata[i]);
+				startAnd = true;
+				break;
+			case 3:		//Maximum Filtering
+				if(startAnd)
+					conc(&msg, " AND ");
+				conc(&msg, columns[i]);
+				conc(&msg, " > ");
+				conc(&msg, wheredata[i]);
+				startAnd = true;
+				break;
+			case 4:		//Not Equal
+				if(startAnd)
+					conc(&msg, " AND ");
+				conc(&msg, columns[i]);
+				conc(&msg, " != ");
+				conc(&msg, wheredata[i]);
+				startAnd = true;
+				break;
+		}
+	}
+	conc(&msg, ';');
+	int execsuccess = sqlite3_exec(db,msg,NULL,NULL,&err);
+	switch(execsuccess)
+	{
+	case 0:		//No Error
+		return 0;
+	default:	//We got an error
+		sqlite3_free(err);
+		return execsuccess;	
+	}
+
+
+
+};
+
+
+
 void	DBSelectW(sqlite3* db,char* table,unsigned long columncount,char** columns,char** values,int* filtertype)		//SELECT records from a table WHERE 
 {
 	int returnVal = DBSSelectW(db,table,columncount,columns,values,filtertype);

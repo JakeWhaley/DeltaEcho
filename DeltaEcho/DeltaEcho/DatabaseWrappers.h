@@ -2,6 +2,7 @@
 #define DATABASEWRAPPERS_H
 #include <stdio.h>
 #include <sqlite3.h>
+#include "CharFunc.h"
 
 void	DBMemOpen(sqlite3**);			//Creates a new database in RAM
 int		DBSMemOpen(sqlite3**);			//Does that, but also reports status
@@ -36,14 +37,14 @@ int		DBSInsert(sqlite3*,char**, unsigned long, char**);		//DB, table name,count,
 void	DBInsertS(sqlite3*,char*, unsigned long,unsigned long, char**, char**);	//INSERT records into a table with specifics
 int		DBSInsertS(sqlite3*,char*, unsigned long,unsigned long, char**, char**);//DB,Table,Count Columns, count records, columns, data
 
-void	DBDeleteW(sqlite3*,char*, unsigned long, char**, char**, int);	//DELETE records from a table WHERE
-int		DBSDeleteW(sqlite3*,char*, unsigned long, char**, char**, int);	//DB,Table,Count Columns, Columns, Where filter, filter type
+void	DBDeleteW(sqlite3*,char*, unsigned long, char**, char**, int*);		//DELETE records from a table WHERE
+int		DBSDeleteW(sqlite3*,char*, unsigned long, char**, char**, int*);	//DB,Table,Count Columns, Columns, Where filter, filter type
 
-void	DBUpdateW(sqlite3*,char*, unsigned long, char**, char**,char**,int);	//UPDATE records in a table WHERE
-int		DBSUpdateW(sqlite3*,char*, unsigned long, char**, char**,char**,int);	//DB,Table,Count Columns, Columns, Column Data, Where filter, filter type
+void	DBUpdateW(sqlite3*,char*, unsigned long, char**, char**,char**,int*);	//UPDATE records in a table WHERE
+int		DBSUpdateW(sqlite3*,char*, unsigned long, char**, char**,char**,int*);	//DB,Table,Count Columns, Columns, Column Data, Where filter, filter type
 									
-void	DBSelectW(sqlite3*,char* ,unsigned long,char**,char**,int);		//SELECT records from a table WHERE 
-int		DBSSelectW(sqlite3*,char* ,unsigned long,char**,char**,int);	//DB,Table,Count Columns, Columns, Where filter, filter type		
+void	DBSelectW(sqlite3*,char* ,unsigned long,char**,char**,int*);	//SELECT records from a table WHERE 
+int		DBSSelectW(sqlite3*,char* ,unsigned long,char**,char**,int*);	//DB,Table,Count Columns, Columns, Where filter, filter type		
 
 
 #endif

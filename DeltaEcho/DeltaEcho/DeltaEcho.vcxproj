@@ -11,11 +11,13 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CharFunc.h" />
     <ClInclude Include="DatabaseWrappers.h" />
     <ClInclude Include="GraphicsWrappers.h" />
     <ClInclude Include="main.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="CharFunc.cpp" />
     <ClCompile Include="DatabaseWrappers.cpp" />
     <ClCompile Include="GraphicsWrappers.cpp" />
     <ClCompile Include="main.cpp" />

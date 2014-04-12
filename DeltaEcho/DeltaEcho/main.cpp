@@ -60,10 +60,14 @@ int main( int argc, char* args[] )
 	DBMemOpen(&db);
 	DBClose(db);
 	DBOpen(&db,"master.db");
-	DBClose(db);
+	//DBClose(db);
+
+	//int execsuccess = sqlite3_exec(db,"SELECT name FROM (SELECT * FROM sqlite_master UNION ALLSELECT * FROM sqlite_temp_master)WHERE type='table'ORDER BY name",NULL,NULL,NULL);
+	
+
 
 	/**/
 	SDL_Delay(5000);
-
+	DBClose(db);
 	return 0;
 };

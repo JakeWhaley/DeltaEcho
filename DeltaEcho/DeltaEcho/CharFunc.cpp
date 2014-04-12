@@ -150,15 +150,15 @@ void setEqual(char ** storage,char * replacement)
 void setEqual(char ** storage,char replacement)
 {
 								//Mix it up
-	if (findLength(storage) == 2)
+	if (findLength(*storage) == 2)
 	{
 		*storage[0] = replacement;
 	} else
 	{
 		delete [] *storage;
 		*storage = new char[2];
-		*storage[0] = replacement;
-		*storage[1] = '\0';
+		(*storage)[0] = replacement;
+		(*storage)[1] = '\0';
 	} 
 };
 

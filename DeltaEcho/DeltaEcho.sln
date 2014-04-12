@@ -3,6 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C++ Express 2010
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DeltaEcho", "DeltaEcho\DeltaEcho.vcxproj", "{E27335A8-6BE7-492C-8BDD-15F94D8F627B}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sqltest", "sqltest\sqltest.vcxproj", "{D6745F33-E962-4A18-B7FC-1B39DE360D6E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{E27335A8-6BE7-492C-8BDD-15F94D8F627B} = {E27335A8-6BE7-492C-8BDD-15F94D8F627B}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Win32 = Debug|Win32
@@ -13,6 +18,10 @@ Global
 		{E27335A8-6BE7-492C-8BDD-15F94D8F627B}.Debug|Win32.Build.0 = Debug|Win32
 		{E27335A8-6BE7-492C-8BDD-15F94D8F627B}.Release|Win32.ActiveCfg = Release|Win32
 		{E27335A8-6BE7-492C-8BDD-15F94D8F627B}.Release|Win32.Build.0 = Release|Win32
+		{D6745F33-E962-4A18-B7FC-1B39DE360D6E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D6745F33-E962-4A18-B7FC-1B39DE360D6E}.Debug|Win32.Build.0 = Debug|Win32
+		{D6745F33-E962-4A18-B7FC-1B39DE360D6E}.Release|Win32.ActiveCfg = Release|Win32
+		{D6745F33-E962-4A18-B7FC-1B39DE360D6E}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

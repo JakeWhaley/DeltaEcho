@@ -4,6 +4,11 @@
 #include <sqlite3.h>
 #include "CharFunc.h"
 
+//Datatypes:
+enum sqlDatalTypes {sqlString,sqlDouble,sqlLong,sqlDecimal,sqlSuperLong,sqlBlob };
+
+
+
 void	DBMemOpen(sqlite3**);			//Creates a new database in RAM
 int		DBSMemOpen(sqlite3**);			//Does that, but also reports status
 
@@ -28,11 +33,11 @@ int		DBSAlterDrop(sqlite3*,char*,unsigned long, char**);	//DB, tablename, column
 void	DBAlterMod(sqlite3*,char*,unsigned long, char**,int);	//Modifies column data type in a table
 int		DBSAlterMod(sqlite3*,char*,unsigned long, char**,int);	//DB,table name,column count, column names, datatypes
 
-void	DBSelect(sqlite3*,char**, unsigned long,char**);		//Selects all records from a table
-int		DBSSelect(sqlite3*,char**, unsigned long,char**);		//DB, table name, count, columns
+//void	DBSelect(sqlite3*,char*, unsigned long,char**);		//Selects all records from a table
+//int		DBSSelect(sqlite3*,char*, unsigned long,char**);		//DB, table name, count, columns
 
-void	DBInsert(sqlite3*,char**, unsigned long,char**);		//Inserts records into a table, assuming every column is there
-int		DBSInsert(sqlite3*,char**, unsigned long, char**);		//DB, table name,count, records
+void	DBInsert(sqlite3*,char*, unsigned long,char**);		//Inserts records into a table, assuming every column is there
+int		DBSInsert(sqlite3*,char*, unsigned long, char**);		//DB, table name,count, records
 
 void	DBInsertS(sqlite3*,char*, unsigned long,unsigned long, char**, char**);	//INSERT records into a table with specifics
 int		DBSInsertS(sqlite3*,char*, unsigned long,unsigned long, char**, char**);//DB,Table,Count Columns, count records, columns, data
@@ -43,8 +48,14 @@ int		DBSDeleteW(sqlite3*,char*, unsigned long, char**, char**, int*);	//DB,Table
 void	DBUpdateW(sqlite3*,char*, unsigned long, char**, char**,char**,int*);	//UPDATE records in a table WHERE
 int		DBSUpdateW(sqlite3*,char*, unsigned long, char**, char**,char**,int*);	//DB,Table,Count Columns, Columns, Column Data, Where filter, filter type
 									
-void	DBSelectW(sqlite3*,char* ,unsigned long,char**,char**,int*);	//SELECT records from a table WHERE 
-int		DBSSelectW(sqlite3*,char* ,unsigned long,char**,char**,int*);	//DB,Table,Count Columns, Columns, Where filter, filter type		
+//void	DBSelectW(sqlite3*,char* ,unsigned long,char**,char**,int*);	//SELECT records from a table WHERE 
+//int		DBSSelectW(sqlite3*,char* ,unsigned long,char**,char**,int*);	//DB,Table,Count Columns, Columns, Where filter, filter type		
+
+unsigned long DBGetRecordCount(sqlite3*,char*);							//SELECT count(*) in table
+																		//DB, Table
+
+unsigned long DBGetFieldCount(sqlite3*,char*);							//find count of possible fields in table
+																		//DB, Table
 
 
 #endif

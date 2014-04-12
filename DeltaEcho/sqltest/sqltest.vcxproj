@@ -10,26 +10,9 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="CharFunc.h" />
-    <ClInclude Include="DatabaseWrappers.h" />
-    <ClInclude Include="GraphicsWrappers.h" />
-    <ClInclude Include="main.h" />
-    <ClInclude Include="SQLItem.h" />
-    <ClInclude Include="sqlItemU.h" />
-    <ClInclude Include="SQLTable.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="CharFunc.cpp" />
-    <ClCompile Include="DatabaseWrappers.cpp" />
-    <ClCompile Include="GraphicsWrappers.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="SQLItem.cpp" />
-    <ClCompile Include="SQLTable.cpp" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{E27335A8-6BE7-492C-8BDD-15F94D8F627B}</ProjectGuid>
-    <RootNamespace>DeltaEcho</RootNamespace>
+    <ProjectGuid>{D6745F33-E962-4A18-B7FC-1B39DE360D6E}</ProjectGuid>
+    <RootNamespace>sqltest</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -54,16 +37,12 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>C:\sqlite;C:\Users\Jake48.2\SDL2-devel-2.0.0-VC\SDL2-2.0.0\include;C:\Users\Jake48.2\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;$(IncludePath)</IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>C:\sqlite;C:\Users\Jake48.2\SDL2-devel-2.0.0-VC\SDL2-2.0.0\lib\x86;C:\Users\Jake48.2\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\sqlite;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\sqlite;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <IncludePath>C:\sqlite;C:\Users\Jake48.2\SDL2-devel-2.0.0-VC\SDL2-2.0.0\include;C:\Users\Jake48.2\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\include;$(IncludePath)</IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LibraryPath>C:\sqlite;C:\Users\Jake48.2\SDL2-devel-2.0.0-VC\SDL2-2.0.0\lib\x86;C:\Users\Jake48.2\SDL2_image-devel-2.0.0-VC\SDL2_image-2.0.0\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\sqlite;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\sqlite;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -72,9 +51,8 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_image.lib;opengl32.lib;glu32.lib;sqlite3.lib</AdditionalDependencies>
-      <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\sqlite;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Jake48.2\Documents\GitHub\DeltaEcho\DeltaEcho\DeltaEcho;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -88,11 +66,34 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>SDL2main.lib;SDL2.lib;SDL2_image.lib;opengl32.lib;glu32.lib;sqlite3.lib</AdditionalDependencies>
-      <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\sqlite;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Users\Jake48.2\Documents\GitHub\DeltaEcho\DeltaEcho\DeltaEcho;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sqlite3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\DeltaEcho\CharFunc.cpp" />
+    <ClCompile Include="..\DeltaEcho\DatabaseWrappers.cpp" />
+    <ClCompile Include="..\DeltaEcho\SQLItem.cpp" />
+    <ClCompile Include="..\DeltaEcho\SQLTable.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\DeltaEcho\CharFunc.h" />
+    <ClInclude Include="..\DeltaEcho\DatabaseWrappers.h" />
+    <ClInclude Include="..\DeltaEcho\SQLItem.h" />
+    <ClInclude Include="..\DeltaEcho\sqlItemU.h" />
+    <ClInclude Include="..\DeltaEcho\SQLTable.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DeltaEcho\DeltaEcho.vcxproj">
+      <Project>{e27335a8-6be7-492c-8bdd-15f94d8f627b}</Project>
+      <Private>true</Private>
+      <ReferenceOutputAssembly>true</ReferenceOutputAssembly>
+      <CopyLocalSatelliteAssemblies>true</CopyLocalSatelliteAssemblies>
+      <LinkLibraryDependencies>true</LinkLibraryDependencies>
+      <UseLibraryDependencyInputs>true</UseLibraryDependencyInputs>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

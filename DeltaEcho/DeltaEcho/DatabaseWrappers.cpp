@@ -551,7 +551,7 @@ unsigned long DBGetRecordCount(sqlite3* db,char* table)
 	char* msg =0;
 	sqlite3_stmt *statement;
 
-	setEqual(&msg,"SELECT * FROM ");
+	setEqual(&msg,"SELECT count(*) FROM ");
 	conc(&msg,table);
 	conc(&msg," ; ");
 
@@ -559,7 +559,8 @@ unsigned long DBGetRecordCount(sqlite3* db,char* table)
 	if(sqlite3_prepare_v2(db,msg,-1,&statement,NULL)==SQLITE_OK)
 	{
 		sqlite3_step(statement);
-		int result = sqlite3_data_count(statement);
+		//tempI[1]=sqlite3_column_int(statement,i);
+		int result =sqlite3_column_int(statement,0); //sqlite3_data_count(statement);
 		if(sqlite3_finalize(statement)==SQLITE_OK)
 			if(result>-1)
 				return result;

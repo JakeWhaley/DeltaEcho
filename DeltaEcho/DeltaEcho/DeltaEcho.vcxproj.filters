@@ -27,9 +27,6 @@
     <ClInclude Include="CharFunc.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sqlItemU.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SQLItem.h">
       <Filter>Header Files</Filter>
     </ClInclude>

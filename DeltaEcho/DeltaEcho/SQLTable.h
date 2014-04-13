@@ -43,6 +43,9 @@ public:
 	int SortS(int,int);			//return sort success
 	unsigned long GetRecordCount();	//Return count of records
 	unsigned long GetFieldCount();	//Return count of fields
+	char * GetAllChar();		//Creates a single string filled with the entirity of the DB
+								//Fields seperated by tabs, records seperated by \n
+	
 };
 
 #endif

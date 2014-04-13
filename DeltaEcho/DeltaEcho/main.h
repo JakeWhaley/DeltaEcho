@@ -8,6 +8,8 @@
 #include <GL\GLU.h>
 #include <stdio.h>
 #include <sqlite3.h>
+#include "SQLTable.h"
+#include "SQLItem.h"
 
 int everythingThread(void *data);	//Has access to every function, at the cost of speed
 int loggingThread(void *data);		//Handles massive amounts of text

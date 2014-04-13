@@ -16,7 +16,6 @@
     <ClInclude Include="GraphicsWrappers.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="SQLItem.h" />
-    <ClInclude Include="sqlItemU.h" />
     <ClInclude Include="SQLTable.h" />
   </ItemGroup>
   <ItemGroup>

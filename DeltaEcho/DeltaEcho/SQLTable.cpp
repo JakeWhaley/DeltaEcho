@@ -217,3 +217,61 @@ int SQLTable::SortS(int,int)			//return sort success
 {
 	return 0;
 };
+
+char * SQLTable::GetAllChar()
+{
+	char * str =0;
+	setEqual(&str,'\0');
+	for (int i = 0; i < recordCount; i++)
+	{
+		for(int ii = 0; ii < fieldCount; ii++)
+		{
+			int intbetween;
+			char * blah = 0;
+			long * bluh = 0;
+			double * blag=0;
+			switch(data[i][ii].getType())
+			{
+			case 0:
+				
+				break;
+			case 1:
+				blah = data[i][ii].getCData();
+				conc(&str,blah);
+				
+				break;
+			case 2:
+				bluh = data[i][ii].getIData();
+				intbetween = bluh[1];
+				blah = new char[10];
+				itoa(intbetween,blah,10);
+				conc(&str,blah);
+				
+				
+				break;
+			case 3:
+				blag = data[i][ii].getDData();
+				blah =ftoa(blag[1]);
+				conc(&str,blah);
+				break;
+			};
+			if(blah)
+				delete [] blah;
+			if(bluh)
+				delete [] bluh;
+			if(blag)
+				delete [] blag;
+			conc(&str,'\t');
+		}
+		conc(&str,'\n');
+	}
+	return str;
+};
+unsigned long SQLTable::GetRecordCount()	//Return count of records
+{
+	return recordCount;
+};
+unsigned long SQLTable::GetFieldCount()	//Return count of fields
+{
+	return fieldCount;
+};

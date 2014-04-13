@@ -59,15 +59,35 @@ int main( int argc, char* args[] )
 	
 	DBMemOpen(&db);
 	DBClose(db);
-	DBOpen(&db,"master.db");
+	//DBOpen(&db,"master.db");
 	//DBClose(db);
 
 	//int execsuccess = sqlite3_exec(db,"SELECT name FROM (SELECT * FROM sqlite_master UNION ALLSELECT * FROM sqlite_temp_master)WHERE type='table'ORDER BY name",NULL,NULL,NULL);
-	
+	SQLTable master("master.db","master");
+	if((master.GetRecordCount()>3) && (master.GetFieldCount() == 2))
+	{
+		if(master.Get(0,0).getType()==2)
+		{
+			if(master.Get(0,1).getType()==1)
+			{
+				char * magic = master.Get(0,1).getCData();
+				if(isEqual(magic,"682"))
+				{
+					char * engineVer = master.Get(1,1).getCData();
+					char * configVer = master.Get(2,1).getCData();
+					delete [] engineVer;
+					delete [] configVer;
+				}
+				delete [] magic;
+			}
+		}
+	}
 
-
+	char * str = master.GetAllChar();
+	std::printf(str);
 	/**/
 	SDL_Delay(5000);
-	DBClose(db);
+	//DBClose(db);
+	delete [] str;
 	return 0;
 };

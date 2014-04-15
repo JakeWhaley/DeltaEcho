@@ -2,7 +2,19 @@
 
 int everythingThread(void *data)
 {
-	
+	bool quit = false;
+	while(!quit)
+	{
+
+		switch(op)
+		{
+			case 
+
+		}
+
+
+	}
+
 	return 0;
 };
 int loggingThread(void *data)
@@ -75,6 +87,16 @@ int main( int argc, char* args[] )
 				{
 					char * engineVer = master.Get(1,1).getCData();
 					char * configVer = master.Get(2,1).getCData();
+
+					if(isEqual(engineVer, "00.00.01")
+					{
+						if(isEqual(isEqual(configVer, "00.00.01")
+						{
+
+
+
+						}
+					}
 					delete [] engineVer;
 					delete [] configVer;
 				}

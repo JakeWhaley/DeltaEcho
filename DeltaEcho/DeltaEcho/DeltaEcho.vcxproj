@@ -12,11 +12,14 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CharFunc.h" />
+    <ClInclude Include="Condition.h" />
     <ClInclude Include="DatabaseWrappers.h" />
     <ClInclude Include="GraphicsWrappers.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="operation.h" />
     <ClInclude Include="SQLItem.h" />
     <ClInclude Include="SQLTable.h" />
+    <ClInclude Include="Trigger.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CharFunc.cpp" />

@@ -1,12 +1,12 @@
 #ifndef CONDITION_H
 #define CONDITION_H
 #include "CharFunc.h"
-template <class CondTemp>
+template <typename CondTemp>
 
 class Condition
 {
 
-public:
+private:
 	Condition * parent;
 	Condition * child;
 	Condition * previous;
@@ -17,17 +17,18 @@ public:
 	CondTemp *	data;
 	char *		name;
 	char *		comment;
-
+	void		ZeroOut();			//Function for preparing Condition Class
+public:
 	Condition();
-	Condition(bool,short,short,CondTemp*,char*,char*);
-	Condition(Condition*,bool,short,short,CondTemp*,char*,char*);
+	Condition(bool,short,short,CondTemp *,char*,char*);
+	Condition(Condition*,bool,short,short,CondTemp *,char*,char*);
 	~Condition();
 	void		setCondition(Condition*);
 	void		setCondition(Condition*,bool,short,short,CondTemp*,char*,char*);
 	void		Adopt(Condition*);
 	void		Disown(Condition*);
-	void		SetElderSibling(Condition*);
-	void		SetYoungerSibling(Condition*);
+	void		Embrace(Condition*);
+	void		Shun(Condition*);
 	Condition*	GetParent();
 	Condition*	GetFirstBorn();
 	Condition*	GetElderSibling();
@@ -36,9 +37,8 @@ public:
 	bool		getNot();
 	void		setBO(short);
 	short		getBO();
-	void		setCT(short);
 	short		getCT();
-	void		setData(CondTemp);
+	void		setData(CondTemp*,short);
 	CondTemp*	getData();
 	void		setName(char*);
 	void		setComment(char*);
@@ -46,5 +46,5 @@ public:
 	char*		getComment();
 
 	
-}
+};
 #endif

@@ -23,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="CharFunc.cpp" />
+    <ClCompile Include="Condition.cpp" />
     <ClCompile Include="DatabaseWrappers.cpp" />
     <ClCompile Include="GraphicsWrappers.cpp" />
     <ClCompile Include="main.cpp" />
